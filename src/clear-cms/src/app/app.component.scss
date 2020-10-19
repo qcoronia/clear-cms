@@ -4,29 +4,30 @@
 
     display: grid;
     grid-template-areas:
-    'head head'
-    'side main'
-    'side foot';
+        'head head'
+        'side main'
+        'side foot';
     grid-template-rows: 50px 1fr 30px;
     grid-template-columns: 200px 1fr;
 
     header {
         grid-area: head;
-        background-color: rgb(158, 188, 255);
+        background-color: var(--clear-cms-primary-color);
     }
 
     nav {
         grid-area: side;
-        background-color: rgb(58, 69, 92);
+        color: var(--clear-cms-navigation-text-color);
+        background-color: var(--clear-cms-navigation-color);
     }
 
     main {
         grid-area: main;
-        background-color: wheat;
+        background-color: var(--clear-cms-background-color);
     }
 
     footer {
         grid-area: foot;
-        background-color: gray;
+        background-color: var(--clear-cms-background-color);
     }
 }
