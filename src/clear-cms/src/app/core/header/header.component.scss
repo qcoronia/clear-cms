@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    .site-name {
+        margin: 0px;
+        width: calc(200px - 1rem);
+    }
+}
