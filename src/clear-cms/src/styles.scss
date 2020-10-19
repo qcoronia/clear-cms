@@ -8,4 +8,9 @@ body {
     height: 100vh;
 
     overflow: hidden;
+
+    font-family: var(--clear-cms-font-family);
+
+    color: var(--clear-cms-text-color);
+    background-color: var(--clear-cms-background-color);
 }

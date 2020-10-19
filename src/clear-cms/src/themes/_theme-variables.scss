@@ -1,7 +1,23 @@
+$font-family: 'Harmattan', sans-serif;
+
+$text-color: #5a5a5a;
 $background-color: #fdfdfd;
-$primary-color: #82b4ff;
+
+$primary-color: #d6e5fd;
+$primary-text-color: $text-color;
+
+$navigation-color: #485972;
+$navigation-text-color: #f3f3f3;
 
 :root {
-    --clear-cms-background-color: $background-color;
-    --clear-cms-primary-color: $primary-color;
+    --clear-cms-font-family: #{$font-family};
+
+    --clear-cms-text-color: #{$text-color};
+    --clear-cms-background-color: #{$background-color};
+
+    --clear-cms-primary-color: #{$primary-color};
+    --clear-cms-primary-text-color: #{$primary-text-color};
+
+    --clear-cms-navigation-color: #{$navigation-color};
+    --clear-cms-navigation-text-color: #{$navigation-text-color};
 }
