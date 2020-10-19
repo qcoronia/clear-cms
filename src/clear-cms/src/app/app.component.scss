@@ -1,0 +1,32 @@
+:host {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-areas:
+    'head head'
+    'side main'
+    'side foot';
+    grid-template-rows: 50px 1fr 30px;
+    grid-template-columns: 200px 1fr;
+
+    header {
+        grid-area: head;
+        background-color: rgb(158, 188, 255);
+    }
+
+    nav {
+        grid-area: side;
+        background-color: rgb(58, 69, 92);
+    }
+
+    main {
+        grid-area: main;
+        background-color: wheat;
+    }
+
+    footer {
+        grid-area: foot;
+        background-color: gray;
+    }
+}
