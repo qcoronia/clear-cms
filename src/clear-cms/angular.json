@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pure-cms": {
+    "clear-cms": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pure-cms/admin",
+            "outputPath": "dist/clear-cms/admin",
             "deployUrl": "/admin",
             "baseHref": "/admin",
             "index": "src/index.html",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pure-cms:build"
+            "browserTarget": "clear-cms:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "pure-cms:build:production"
+              "browserTarget": "clear-cms:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pure-cms:build"
+            "browserTarget": "clear-cms:build"
           }
         },
         "test": {
@@ -116,15 +116,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "pure-cms:serve"
+            "devServerTarget": "clear-cms:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "pure-cms:serve:production"
+              "devServerTarget": "clear-cms:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "pure-cms"
+  "defaultProject": "clear-cms"
 }
