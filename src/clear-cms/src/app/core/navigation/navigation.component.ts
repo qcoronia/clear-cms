@@ -17,7 +17,7 @@ export class NavigationComponent implements OnInit {
       { label: 'Content', route: ['content'] },
       { label: 'Media', route: ['media'] },
       { label: 'Settings', route: ['settings'] },
-      { label: 'User', route: ['user'] },
+      { label: 'Users', route: ['users'] },
     ];
   }
 
