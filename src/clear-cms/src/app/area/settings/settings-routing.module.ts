@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MediaComponent } from '../media/media.component';
+import { SettingsComponent } from './settings.component';
 
 const routes: Routes = [
-  { path: '', component: MediaComponent },
+  { path: '', component: SettingsComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SettingRoutingModule { }
+export class SettingsRoutingModule { }
