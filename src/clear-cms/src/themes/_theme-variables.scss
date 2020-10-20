@@ -9,6 +9,8 @@ $primary-text-color: $text-color;
 $navigation-color: #485972;
 $navigation-text-color: #f3f3f3;
 
+$link-color: #517dc5;
+
 :root {
     --clear-cms-font-family: #{$font-family};
 
@@ -20,4 +22,6 @@ $navigation-text-color: #f3f3f3;
 
     --clear-cms-navigation-color: #{$navigation-color};
     --clear-cms-navigation-text-color: #{$navigation-text-color};
+
+    --clear-cms-link-color: #{$link-color};
 }

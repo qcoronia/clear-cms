@@ -13,4 +13,9 @@ body {
 
     color: var(--clear-cms-text-color);
     background-color: var(--clear-cms-background-color);
+
+    a {
+        text-decoration: none;
+        color: var(--clear-cms-link-color);
+    }
 }
