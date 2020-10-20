@@ -1,0 +1,6 @@
+<div class="header">
+  <ng-template ngFor let-tab [ngForOf]="tabs">
+    <div><a [routerLink]="tab.route">{{tab.label}}</a></div>
+  </ng-template>
+</div>
+<ng-content></ng-content>

@@ -4,6 +4,8 @@ import { SettingsComponent } from './settings.component';
 
 const routes: Routes = [
   { path: '', component: SettingsComponent },
+  { path: 'page-types', component: SettingsComponent },
+  { path: 'page-parts', component: SettingsComponent },
 ];
 
 @NgModule({
