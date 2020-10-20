@@ -1,4 +1,3 @@
-<div>Content</div>
-<div>Media</div>
-<div>Settings</div>
-<div>Users</div>
+<ng-container *ngFor="let navItem of navItems">
+  <a [routerLink]="navItem.route" [class.active]="isCurrentRoute(navItem.route)">{{navItem.label}}</a>
+</ng-container>

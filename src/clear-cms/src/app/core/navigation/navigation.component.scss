@@ -1,10 +1,25 @@
 :host {
     display: flex;
     flex-direction: column;
-    width: calc(100% - 1rem);
+    width: 100%;
     height: 100%;
-    margin-left: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    gap: 1rem;
+
+    a {
+        color: var(--clear-cms-navigation-text-color);
+        text-decoration: none;
+        background-color: transparent;
+        transition: all 0.2s;
+        padding-top: 0.5rem;
+        padding-left: 1rem;
+        padding-bottom: 0.5rem;
+
+        &:hover {
+            color: var(--clear-cms-primary-text-color);
+            background-color: var(--clear-cms-primary-color);
+        }
+
+        &.active {
+            border-left: 4px solid var(--clear-cms-primary-color);
+        }
+    }
 }

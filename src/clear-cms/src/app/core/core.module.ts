@@ -1,16 +1,24 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders, Provider } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationModule } from './navigation/navigation.module';
+import { HeaderModule } from './header/header.module';
+import { FooterModule } from './footer/footer.module';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, NavigationComponent],
+  declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+
+    NavigationModule,
+    HeaderModule,
+    FooterModule,
   ],
-  exports: [HeaderComponent, FooterComponent, NavigationComponent]
+  exports: [
+    NavigationModule,
+    HeaderModule,
+    FooterModule,
+  ]
 })
 export class CoreModule { }
