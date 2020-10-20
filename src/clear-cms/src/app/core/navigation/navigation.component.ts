@@ -13,19 +13,15 @@ export class NavigationComponent implements OnInit {
 
   constructor(private router: Router) {
     this.navItems = [
-      { label: 'Dashboard', route: ['dashboard'] },
-      { label: 'Content', route: ['content'] },
-      { label: 'Media', route: ['media'] },
-      { label: 'Settings', route: ['settings'] },
-      { label: 'Users', route: ['users'] },
+      { label: 'Dashboard', route: 'dashboard' },
+      { label: 'Content', route: 'content' },
+      { label: 'Media', route: 'media' },
+      { label: 'Settings', route: 'settings' },
+      { label: 'Users', route: 'users' },
     ];
   }
 
   ngOnInit(): void {
-  }
-
-  public isCurrent(navItem: NavigationItem): boolean {
-    return this.router.url === `/${navItem.route}`;
   }
 
 }

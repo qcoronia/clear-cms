@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TabContainerItemComponent } from './tab-container-item.component';
+import { ContentTypeListComponent } from './content-type-list.component';
 
-describe('TabContainerItemComponent', () => {
-  let component: TabContainerItemComponent;
-  let fixture: ComponentFixture<TabContainerItemComponent>;
+describe('ContentTypeListComponent', () => {
+  let component: ContentTypeListComponent;
+  let fixture: ComponentFixture<ContentTypeListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TabContainerItemComponent ]
+      declarations: [ ContentTypeListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TabContainerItemComponent);
+    fixture = TestBed.createComponent(ContentTypeListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

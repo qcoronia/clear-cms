@@ -1,3 +1,3 @@
 <ng-container *ngFor="let navItem of navItems">
-  <a [routerLink]="navItem.route" [class.active]="isCurrent(navItem)">{{navItem.label}}</a>
+  <a [routerLink]="navItem.route" routerLinkActive="active">{{navItem.label}}</a>
 </ng-container>

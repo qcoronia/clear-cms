@@ -1,4 +1,4 @@
-<app-tab-container>
-  <app-tab-container-item label="Page Types" [route]="['page-types']"></app-tab-container-item>
-  <app-tab-container-item label="Page Parts" [route]="['page-parts']"></app-tab-container-item>
+<app-tab-container [tabs]="[
+  { label: 'Content Types', route: 'content-types' },
+  { label: 'Template Parts', route: 'template-parts' }]">
 </app-tab-container>

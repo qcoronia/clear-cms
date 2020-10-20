@@ -1,23 +1,21 @@
-import { Component, OnInit, ViewChildren, AfterViewInit, ContentChildren, AfterContentInit } from '@angular/core';
-import { TabContainerItemComponent } from '../tab-container-item/tab-container-item.component';
+import { Component, OnInit, ViewChildren, AfterViewInit, ContentChildren, AfterContentInit, Input } from '@angular/core';
+import { TabInfo } from './models/tab-info.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab-container',
   templateUrl: './tab-container.component.html',
   styleUrls: ['./tab-container.component.scss']
 })
-export class TabContainerComponent implements AfterContentInit {
+export class TabContainerComponent {
 
-  @ContentChildren(TabContainerItemComponent) public tabs: TabContainerItemComponent[];
+  @Input() public tabs: TabInfo[];
 
-  public tabLabels: string[];
+  constructor(private router: Router) { }
 
-  constructor() {
-    this.tabLabels = [];
-  }
-
-  ngAfterContentInit(): void {
-    this.tabLabels = this.tabs.map(tab => tab.label);
+  public isCurrent(tab: TabInfo): boolean {
+    console.warn(this.router.url, tab.route);
+    return this.router.isActive(tab.route, false);
   }
 
 }

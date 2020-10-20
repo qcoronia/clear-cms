@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabContainerModule } from './tab-container/tab-container.module';
-import { TabContainerItemModule } from './tab-container-item/tab-container-item.module';
 
 
 
@@ -11,8 +10,7 @@ import { TabContainerItemModule } from './tab-container-item/tab-container-item.
     CommonModule,
 
     TabContainerModule,
-    TabContainerItemModule,
   ],
-  exports: [TabContainerModule, TabContainerItemModule]
+  exports: [TabContainerModule]
 })
 export class SharedModule { }

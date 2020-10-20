@@ -2,10 +2,26 @@
     display: flex;
     width: 100%;
     height: 100%;
+    flex-direction: column;
 
     .header {
         display: flex;
         width: 100%;
         gap: 1rem;
+
+        a {
+            padding-bottom: 0.5rem;
+
+            &.active {
+                border-bottom: 4px solid var(--clear-cms-primary-color);
+            }
+        }
+
+    }
+
+    .contents {
+        display: flex;
+        width: 100%;
+        height: 100%;
     }
 }

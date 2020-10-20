@@ -1,6 +1,10 @@
 <div class="header">
-  <ng-template ngFor let-tab [ngForOf]="tabs">
-    <div><a [routerLink]="tab.route"><strong>{{tab.label}}</strong></a></div>
-  </ng-template>
+  <div *ngFor="let tab of tabs">
+    <a [routerLink]="tab.route" routerLinkActive="active">
+      <strong>{{tab.label}}</strong>
+    </a>
+  </div>
 </div>
-<ng-content></ng-content>
+<div class="contents">
+  <router-outlet></router-outlet>
+</div>
