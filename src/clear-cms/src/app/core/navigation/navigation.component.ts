@@ -24,9 +24,8 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public isCurrentRoute(navItemRoute: string): boolean {
-    console.warn(this.router.url === `/${navItemRoute}`);
-    return this.router.url === `/${navItemRoute}`;
+  public isCurrent(navItem: NavigationItem): boolean {
+    return this.router.url === `/${navItem.route}`;
   }
 
 }
