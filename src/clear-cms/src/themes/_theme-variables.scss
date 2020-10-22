@@ -1,10 +1,30 @@
+@use './color-functions';
+
 $font-family: 'Harmattan', sans-serif;
 
 $text-color: #5a5a5a;
+$text-color-inverted: #fdfdfd;
 $background-color: #fdfdfd;
 
+$default-color: #f1f1f1;
+$default-color-lighter: color-functions.shift-hue-then-lighten($default-color, 2);
+$default-color-darker: color-functions.shift-hue-then-darken($default-color, 15);
+$default-text-color: $text-color;
+
 $primary-color: #d6e5fd;
+$primary-color-lighter: color-functions.shift-hue-then-lighten($primary-color, 2);
+$primary-color-darker: color-functions.shift-hue-then-darken($primary-color, 15);
 $primary-text-color: $text-color;
+
+$warning-color: #f8deae;
+$warning-color-lighter: color-functions.shift-hue-then-lighten($warning-color, 2);
+$warning-color-darker: color-functions.shift-hue-then-darken($warning-color, 15);
+$warning-text-color: $text-color;
+
+$danger-color: #fc6767;
+$danger-color-lighter: color-functions.shift-hue-then-lighten($danger-color, 2);
+$danger-color-darker: color-functions.shift-hue-then-darken($danger-color, 15);
+$danger-text-color: $text-color-inverted;
 
 $navigation-color: #485972;
 $navigation-text-color: #f3f3f3;
@@ -17,11 +37,82 @@ $link-color: #517dc5;
     --clear-cms-text-color: #{$text-color};
     --clear-cms-background-color: #{$background-color};
 
+    --clear-cms-default-color: #{$default-color};
+    --clear-cms-default-color-lighter: #{$default-color-lighter};
+    --clear-cms-default-color-darker: #{$default-color-darker};
+    --clear-cms-default-text-color: #{$default-text-color};
+
     --clear-cms-primary-color: #{$primary-color};
+    --clear-cms-primary-color-lighter: #{$primary-color-lighter};
+    --clear-cms-primary-color-darker: #{$primary-color-darker};
     --clear-cms-primary-text-color: #{$primary-text-color};
+
+    --clear-cms-warning-color: #{$warning-color};
+    --clear-cms-warning-color-lighter: #{$warning-color-lighter};
+    --clear-cms-warning-color-darker: #{$warning-color-darker};
+    --clear-cms-warning-text-color: #{$warning-text-color};
+
+    --clear-cms-danger-color: #{$danger-color};
+    --clear-cms-danger-color-lighter: #{$danger-color-lighter};
+    --clear-cms-danger-color-darker: #{$danger-color-darker};
+    --clear-cms-danger-text-color: #{$danger-text-color};
 
     --clear-cms-navigation-color: #{$navigation-color};
     --clear-cms-navigation-text-color: #{$navigation-text-color};
 
     --clear-cms-link-color: #{$link-color};
+}
+
+button {
+    background-color: var(--clear-cms-default-color);
+    color: var(--clear-cms-default-text-color);
+    border: none;
+    padding: 10px;
+
+    &:hover {
+        background-color: var(--clear-cms-default-color-lighter);
+    }
+
+    &:active {
+        background-color: var(--clear-cms-default-color-darker);
+    }
+
+    &.info {
+        background-color: var(--clear-cms-info-color);
+        color: var(--clear-cms-info-text-color);
+
+        &:hover {
+            background-color: var(--clear-cms-info-color-lighter);
+        }
+
+        &:active {
+            background-color: var(--clear-cms-info-color-darker);
+        }
+    }
+
+    &.warning {
+        background-color: var(--clear-cms-warning-color);
+        color: var(--clear-cms-warning-text-color);
+
+        &:hover {
+            background-color: var(--clear-cms-warning-color-lighter);
+        }
+
+        &:active {
+            background-color: var(--clear-cms-warning-color-darker);
+        }
+    }
+
+    &.danger {
+        background-color: var(--clear-cms-danger-color);
+        color: var(--clear-cms-danger-text-color);
+
+        &:hover {
+            background-color: var(--clear-cms-danger-color-lighter);
+        }
+
+        &:active {
+            background-color: var(--clear-cms-danger-color-darker);
+        }
+    }
 }

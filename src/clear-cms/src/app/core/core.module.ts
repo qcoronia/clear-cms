@@ -6,6 +6,7 @@ import { FooterModule } from './footer/footer.module';
 import { ContentTypeExplorerModule } from './content-type-explorer/content-type-explorer.module';
 import { ContentTypeListModule } from './content-type-list/content-type-list.module';
 import { ContentTypeFormModule } from './content-type-form/content-type-form.module';
+import { DatabaseManagementModule } from './database-management/database-management.module';
 
 
 
@@ -20,12 +21,14 @@ import { ContentTypeFormModule } from './content-type-form/content-type-form.mod
     ContentTypeExplorerModule,
     ContentTypeListModule,
     ContentTypeFormModule,
+    DatabaseManagementModule,
   ],
   exports: [
     NavigationModule,
     HeaderModule,
     FooterModule,
     ContentTypeExplorerModule,
+    DatabaseManagementModule,
   ]
 })
 export class CoreModule { }

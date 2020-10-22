@@ -1,0 +1,7 @@
+@function shift-hue-then-darken($color, $amount) {
+    @return darken(adjust-hue($color, 10deg), $amount);
+}
+
+@function shift-hue-then-lighten($color, $amount) {
+    @return lighten(adjust-hue($color, 10deg), $amount);
+}
