@@ -31,7 +31,8 @@
               { "glob": "index.html", "input": "src/default-pages", "output": "./../" }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },

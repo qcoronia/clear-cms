@@ -11,6 +11,11 @@ $default-color-lighter: color-functions.shift-hue-then-lighten($default-color, 2
 $default-color-darker: color-functions.shift-hue-then-darken($default-color, 15);
 $default-text-color: $text-color;
 
+$info-color: #81e6e6;
+$info-color-lighter: color-functions.shift-hue-then-lighten($info-color, 2);
+$info-color-darker: color-functions.shift-hue-then-darken($info-color, 15);
+$info-text-color: $text-color;
+
 $primary-color: #d6e5fd;
 $primary-color-lighter: color-functions.shift-hue-then-lighten($primary-color, 2);
 $primary-color-darker: color-functions.shift-hue-then-darken($primary-color, 15);
@@ -41,6 +46,11 @@ $link-color: #517dc5;
     --clear-cms-default-color-lighter: #{$default-color-lighter};
     --clear-cms-default-color-darker: #{$default-color-darker};
     --clear-cms-default-text-color: #{$default-text-color};
+
+    --clear-cms-info-color: #{$info-color};
+    --clear-cms-info-color-lighter: #{$info-color-lighter};
+    --clear-cms-info-color-darker: #{$info-color-darker};
+    --clear-cms-info-text-color: #{$info-text-color};
 
     --clear-cms-primary-color: #{$primary-color};
     --clear-cms-primary-color-lighter: #{$primary-color-lighter};

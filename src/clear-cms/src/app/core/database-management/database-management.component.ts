@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { DatabaseService } from 'src/app/services/database/database.service';
 
 @Component({
   selector: 'app-database-management',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatabaseManagementComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private database: DatabaseService,
+    private toastr: ToastrService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+  }
+
+  public async hasDatabase(): Promise<boolean> {
+    return await this.database.exists();
+  }
+
+  public async initializeDefaults(): Promise<void> {
+    await this.database.initDefaults();
+    this.toastr.success('Database initialized to defaults');
+  }
+
+  public clear(): void {
+    this.toastr.success('Database cleared');
   }
 
 }

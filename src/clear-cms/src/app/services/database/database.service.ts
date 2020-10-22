@@ -4,6 +4,7 @@ import { filter, shareReplay, switchMap, take, tap } from 'rxjs/operators';
 import { NgxIndexedDBService, DBConfig } from 'ngx-indexed-db';
 import { DB_NAME } from './database-config';
 import { DatabaseOptions } from './database-options';
+import { DEFAULT_DATA } from './database-initial-data';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,16 @@ export class DatabaseService {
     );
   }
 
+  public async exists(): Promise<boolean> {
+    return await this.db.count(DB_NAME).toPromise() > 0;
+  }
+
+  public async initDefaults(): Promise<void> {
+    this.init({
+      initialData: DEFAULT_DATA,
+    });
+  }
+
   public init(opts?: DatabaseOptions) {
     return from(this.db.count(DB_NAME)).pipe(
       switchMap(count => {
@@ -29,11 +40,20 @@ export class DatabaseService {
           return of([]);
         }
 
-        return zip(
-          opts.initialData.contentType.map(e => from(this.db.add('contentType', e))),
-          opts.initialData.content.map(e => from(this.db.add('contentType', e))),
-          opts.initialData.fieldType.map(e => from(this.db.add('contentType', e)))
-        );
+        const tablesWithData = new Array<Observable<number>[]>();
+        if (!!opts.initialData.contentType) {
+          tablesWithData.push(opts.initialData.contentType.map(e => from(this.db.add('contentType', e))));
+        }
+
+        if (!!opts.initialData.content) {
+          tablesWithData.push(opts.initialData.content.map(e => from(this.db.add('content', e))));
+        }
+
+        if (!!opts.initialData.fieldType) {
+          tablesWithData.push(opts.initialData.fieldType.map(e => from(this.db.add('fieldType', e))));
+        }
+
+        return zip(tablesWithData);
       }),
       take(1),
       tap(statuses => this.initialized$.next(true)),

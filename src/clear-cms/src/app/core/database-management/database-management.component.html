@@ -1,8 +1,13 @@
 <section id="management">
   <h3>Management</h3>
   <div>
-    <button class="danger">Delete</button>
+    <button class="info"
+            *ngIf="!(hasDatabase() | async)"
+            (click)="initializeDefaults()">Initialize Defaults</button>
+    <button class="danger"
+            *ngIf="hasDatabase() | async"
+            (click)="clear()">Clear</button>
     <button class="warning">Import</button>
-    <button>Export</button>
+    <button>Backup</button>
   </div>
 </section>

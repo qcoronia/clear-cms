@@ -1,5 +1,6 @@
-export class ContentType {
-  public alias: string;
+import { Entity } from './entity.model';
+
+export class ContentType extends Entity {
   public properties: { [key: string]: string };
-  public parentAlias: string;
+  public template: string;
 }
