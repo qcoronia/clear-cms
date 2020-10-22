@@ -21,7 +21,9 @@ export const dbConfig: DBConfig = {
     1: (db, transaction) => {
       for (const storeName of storeNames) {
         const store = transaction.objectStore(storeName);
-        store.createIndex('parentAlias', 'parentAlias', { unique: false });
+        if (!store.indexNames.contains('parentAlias')) {
+          store.createIndex('parentAlias', 'parentAlias', { unique: false });
+        }
       }
     },
   }),

@@ -23,34 +23,28 @@ export class DatabaseService {
     );
   }
 
-  public async exists(): Promise<boolean> {
-    return await this.db.count(DB_NAME).toPromise() > 0;
-  }
-
-  public async initDefaults(): Promise<void> {
-    this.init({
+  public initDefaults(): Observable<any[]> {
+    return this.init({
       initialData: DEFAULT_DATA,
     });
   }
 
   public init(opts?: DatabaseOptions) {
-    return from(this.db.count(DB_NAME)).pipe(
-      switchMap(count => {
-        if (count > 0) {
-          return of([]);
-        }
-
+    return of({}).pipe(
+      switchMap(() => {
         const tablesWithData = new Array<Observable<number>[]>();
-        if (!!opts.initialData.contentType) {
-          tablesWithData.push(opts.initialData.contentType.map(e => from(this.db.add('contentType', e))));
-        }
 
-        if (!!opts.initialData.content) {
-          tablesWithData.push(opts.initialData.content.map(e => from(this.db.add('content', e))));
-        }
+        const stores = [
+          'contentType',
+          'content',
+          'fieldType'
+        ];
 
-        if (!!opts.initialData.fieldType) {
-          tablesWithData.push(opts.initialData.fieldType.map(e => from(this.db.add('fieldType', e))));
+        for (const store of stores) {
+          this.db.clear(store);
+          if (!!opts.initialData[store]) {
+            tablesWithData.push(opts.initialData[store].map(e => from(this.db.add(store, e))));
+          }
         }
 
         return zip(tablesWithData);

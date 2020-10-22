@@ -16,12 +16,8 @@ export class DatabaseManagementComponent implements OnInit {
   public ngOnInit(): void {
   }
 
-  public async hasDatabase(): Promise<boolean> {
-    return await this.database.exists();
-  }
-
-  public async initializeDefaults(): Promise<void> {
-    await this.database.initDefaults();
+  public async reset(): Promise<void> {
+    await this.database.initDefaults().toPromise();
     this.toastr.success('Database initialized to defaults');
   }
 
