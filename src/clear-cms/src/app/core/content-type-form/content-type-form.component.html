@@ -8,5 +8,5 @@
   <div formArrayName="properties">
 
   </div>
-  <textarea formControlName="template"></textarea>
+  <ngx-monaco-editor [options]="editorOptions" [formControl]="form.get('template')"></ngx-monaco-editor>
 </form>

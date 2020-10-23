@@ -11,6 +11,7 @@
             'properties template';
         grid-template-columns: 35% 1fr;
         grid-template-rows: 4rem 1fr;
+        column-gap: 1rem;
 
         .header {
             display: flex;
@@ -20,6 +21,7 @@
 
             input[formControlName=alias] {
                 font-weight: bold;
+                font-size: large;
                 width: 40%;
             }
         }
@@ -28,6 +30,7 @@
             grid-area: properties;
             height: 100%;
             width: 100%;
+            border-right: 1px solid var(--clear-cms-line-separator-color);
         }
 
         [formControlName=template] {

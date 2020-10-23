@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
-import { TreeviewModule } from 'ngx-treeview';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +22,6 @@ import { ServicesModule } from './services/services.module';
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
     }),
-    TreeviewModule.forRoot(),
 
     CoreModule,
     ServicesModule.forRoot(),

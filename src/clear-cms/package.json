@@ -20,8 +20,8 @@
     "@angular/platform-browser-dynamic": "~10.1.6",
     "@angular/router": "~10.1.6",
     "ngx-indexed-db": "^6.0.3",
+    "ngx-monaco-editor": "^9.0.0",
     "ngx-toastr": "^13.1.0",
-    "ngx-treeview": "^10.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

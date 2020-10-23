@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContentTypeListComponent } from './content-type-list.component';
 import { TreeNodeModule } from 'src/app/shared/tree-node/tree-node.module';
-import { TreeviewModule } from 'ngx-treeview';
 
 
 
@@ -10,8 +9,6 @@ import { TreeviewModule } from 'ngx-treeview';
   declarations: [ContentTypeListComponent],
   imports: [
     CommonModule,
-
-    TreeviewModule,
 
     TreeNodeModule,
   ],

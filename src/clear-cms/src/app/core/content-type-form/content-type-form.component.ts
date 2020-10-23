@@ -20,6 +20,7 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
   private whenDestroyed$: Subject<any>;
 
   public form: FormGroup;
+  public editorOptions: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,6 +39,11 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
         fieldTypeAlias: [null],
       }),
     });
+
+    this.editorOptions = {
+      theme: 'vs-light',
+      language: 'html',
+    };
   }
 
   ngOnInit(): void {
