@@ -1,0 +1,39 @@
+:host {
+    height: 100%;
+    width: 100%;
+
+    form {
+        display: grid;
+        height: 100%;
+        width: 100%;
+        grid-template-areas:
+            'header header'
+            'properties template';
+        grid-template-columns: 35% 1fr;
+        grid-template-rows: 4rem 1fr;
+
+        .header {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            grid-area: header;
+
+            input[formControlName=alias] {
+                font-weight: bold;
+                width: 40%;
+            }
+        }
+
+        [formControlName=properties] {
+            grid-area: properties;
+            height: 100%;
+            width: 100%;
+        }
+
+        [formControlName=template] {
+            grid-area: template;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

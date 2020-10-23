@@ -54,6 +54,12 @@ export class DatabaseService {
     );
   }
 
+  public selectOne<T>(storeName: string, key: string): Observable<T> {
+    return this.db.getByKey(storeName, key).pipe(
+      map(data => data as T),
+    );
+  }
+
   public selectAll<T>(storeName: string): Observable<T[]> {
     return this.db.getAll(storeName).pipe(
       map(data => data as T[]),

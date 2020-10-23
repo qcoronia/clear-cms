@@ -1,1 +1,12 @@
-<p>content-type-form works!</p>
+<form [formGroup]="form">
+  <div class="header">
+    <span class="fa fa-key"></span>
+    <input type="text" formControlName="alias" />
+    <span>inherits</span>
+    <input type="text" formControlName="parentAlias" />
+  </div>
+  <div formArrayName="properties">
+
+  </div>
+  <textarea formControlName="template"></textarea>
+</form>

@@ -18,4 +18,8 @@ export class ContentTypeService {
       return this.database.selectAll<ContentType>('contentType');
     }
   }
+
+  public getOne(alias: string): Observable<ContentType> {
+    return this.database.selectOne<ContentType>('contentType', alias);
+  }
 }
