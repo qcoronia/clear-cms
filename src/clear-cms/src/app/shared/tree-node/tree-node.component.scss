@@ -7,17 +7,28 @@
         text-align: left;
         align-items: center;
 
-        .caret::before {
-            content: '\25B6';
+        .caret {
             color: var(--clear-cms-text-color);
+            cursor: pointer;
             display: inline-block;
             margin-right: 0.2rem;
+            min-width: 0.5rem;
             transition: transform 0.2s;
-            cursor: pointer;
-        }
+            text-align: right;
 
-        &.active .caret::before {
-            transform: rotate(90deg);
+            &.active {
+                transform: rotate(90deg);
+            }
+
+            &.hidden {
+                display: none;
+                position: relative;
+
+                + .text::before {
+                    content: '';
+                    margin-left: 0.8rem;
+                }
+            }
         }
 
         .text {

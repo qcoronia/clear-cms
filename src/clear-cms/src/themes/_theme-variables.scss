@@ -35,6 +35,7 @@ $navigation-color: #485972;
 $navigation-text-color: #f3f3f3;
 
 $link-color: #517dc5;
+$line-separator-color: #eaeaea;
 
 :root {
     --clear-cms-font-family: #{$font-family};
@@ -71,6 +72,7 @@ $link-color: #517dc5;
     --clear-cms-navigation-text-color: #{$navigation-text-color};
 
     --clear-cms-link-color: #{$link-color};
+    --clear-cms-line-separator-color: #{$line-separator-color};
 }
 
 button {

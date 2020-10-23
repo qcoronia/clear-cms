@@ -2,8 +2,8 @@
 
 <ng-template #treeNode let-node="node" let-isRoot="isRoot">
   <div class="node">
-    <span class="caret" (click)="toggle($event)"></span>
-    <a class="text">{{node.name}}</a>
+    <span class="fa fa-caret-right caret" [class.hidden]="!node.children || node.children.length <= 0" (click)="toggle($event)"></span>
+    <a class="text" [routerLink]="['edit', node.name]">{{node.name}}</a>
     <button>...</button>
   </div>
   <ul *ngIf="!!node.children && node.children.length > 0">
