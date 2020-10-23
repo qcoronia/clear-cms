@@ -15,9 +15,9 @@ export class TreeNodeComponent implements OnInit {
   }
 
   public toggle(el: MouseEvent): void {
-    (el.currentTarget as HTMLElement).classList.toggle('active');
-    (el.currentTarget as HTMLElement).parentElement.classList.toggle('active');
-    (el.currentTarget as HTMLElement).parentElement.nextElementSibling?.classList.toggle('active');
+    (el.currentTarget as HTMLElement).classList.toggle('expanded');
+    (el.currentTarget as HTMLElement).parentElement.classList.toggle('expanded');
+    (el.currentTarget as HTMLElement).parentElement.nextElementSibling?.classList.toggle('expanded');
   }
 
 }
