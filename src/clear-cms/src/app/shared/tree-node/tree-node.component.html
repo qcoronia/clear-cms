@@ -1,0 +1,14 @@
+<ng-container [ngTemplateOutlet]="treeNode" [ngTemplateOutletContext]="{ node: node, isRoot: true }" ></ng-container>
+
+<ng-template #treeNode let-node="node" let-isRoot="isRoot">
+  <div class="node">
+    <span class="caret" (click)="toggle($event)"></span>
+    <a class="text">{{node.name}}</a>
+    <button>...</button>
+  </div>
+  <ul *ngIf="!!node.children && node.children.length > 0">
+    <li *ngFor="let child of node.children">
+      <ng-container [ngTemplateOutlet]="treeNode" [ngTemplateOutletContext]="{ node: child }"></ng-container>
+    </li>
+  </ul>
+</ng-template>

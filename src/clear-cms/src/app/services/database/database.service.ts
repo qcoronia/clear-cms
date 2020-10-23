@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable, from, of, zip } from 'rxjs';
-import { filter, shareReplay, switchMap, take, tap } from 'rxjs/operators';
+import { filter, shareReplay, switchMap, take, tap, map } from 'rxjs/operators';
 import { NgxIndexedDBService, DBConfig } from 'ngx-indexed-db';
 import { DB_NAME } from './database-config';
 import { DatabaseOptions } from './database-options';
@@ -54,15 +54,15 @@ export class DatabaseService {
     );
   }
 
-  public selectAll(storeName: string): Observable<any[]> {
-    return this.ensureInitialized$.pipe(
-      switchMap(initialized => from(this.db.getAll(storeName))),
+  public selectAll<T>(storeName: string): Observable<T[]> {
+    return this.db.getAll(storeName).pipe(
+      map(data => data as T[]),
     );
   }
 
-  public selectByIndex(storeName: string, index: string, searchTerm: string): Observable<any> {
-    return this.ensureInitialized$.pipe(
-      switchMap(initialized => from(this.db.getByIndex(DB_NAME, index, searchTerm))),
+  public selectByIndex<T>(storeName: string, index: string, searchTerm: string): Observable<any> {
+    return this.db.getByIndex(DB_NAME, index, searchTerm).pipe(
+      map(data => data as T[]),
     );
   }
 }

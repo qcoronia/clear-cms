@@ -1,0 +1,53 @@
+:host {
+    width: 100%;
+
+    .node {
+        display: flex;
+        width: 100%;
+        text-align: left;
+        align-items: center;
+
+        .caret::before {
+            content: '\25B6';
+            color: var(--clear-cms-text-color);
+            display: inline-block;
+            margin-right: 0.2rem;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        &.active .caret::before {
+            transform: rotate(90deg);
+        }
+
+        .text {
+            width: 100%;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            text-overflow: ellipsis;
+        }
+
+        button {
+            visibility: hidden;
+        }
+
+        &:hover button {
+            visibility: visible;
+        }
+    }
+
+    ul {
+        list-style: none;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        transition: all 0.2s;
+        padding-inline-start: 1rem;
+        display: none;
+        opacity: 0;
+
+        &.active {
+            display: block;
+            opacity: 1;
+        }
+    }
+}

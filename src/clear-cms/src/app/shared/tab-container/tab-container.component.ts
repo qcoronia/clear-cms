@@ -14,7 +14,6 @@ export class TabContainerComponent {
   constructor(private router: Router) { }
 
   public isCurrent(tab: TabInfo): boolean {
-    console.warn(this.router.url, tab.route);
     return this.router.isActive(tab.route, false);
   }
 
