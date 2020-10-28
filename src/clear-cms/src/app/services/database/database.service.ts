@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable, from, of, zip } from 'rxjs';
 import { filter, shareReplay, switchMap, take, tap, map } from 'rxjs/operators';
 import { NgxIndexedDBService, DBConfig } from 'ngx-indexed-db';
-import { DB_NAME } from './database-config';
+import { DB_NAME, storeNames } from './database-config';
 import { DatabaseOptions } from './database-options';
 import { DEFAULT_DATA } from './database-initial-data';
 
@@ -34,13 +34,7 @@ export class DatabaseService {
       switchMap(() => {
         const tablesWithData = new Array<Observable<number>[]>();
 
-        const stores = [
-          'contentType',
-          'content',
-          'fieldType'
-        ];
-
-        for (const store of stores) {
+        for (const store of storeNames) {
           this.db.clear(store);
           if (!!opts.initialData[store]) {
             tablesWithData.push(opts.initialData[store].map(e => from(this.db.add(store, e))));

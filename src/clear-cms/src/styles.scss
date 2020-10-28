@@ -14,12 +14,6 @@ body {
     color: var(--clear-cms-text-color);
     background-color: var(--clear-cms-background-color);
 
-    input,
-    span {
-        color: var(--clear-cms-text-color);
-        background-color: var(--clear-cms-background-color);
-    }
-
     *:focus {
         outline-color: var(--clear-cms-primary-color);
         outline-width: 1px;
@@ -34,13 +28,16 @@ body {
         border: 0px;
     }
 
-    input {
+    input,
+    select {
         padding: 0.5rem;
         margin: 0.5rem;
         border-top: 1px solid transparent;
         border-left: 1px solid transparent;
         border-right: 1px solid transparent;
         border-bottom: 1px solid var(--clear-cms-line-separator-color);
+        color: var(--clear-cms-text-color);
+        background-color: var(--clear-cms-background-color);
 
         &:hover,
         &:active,

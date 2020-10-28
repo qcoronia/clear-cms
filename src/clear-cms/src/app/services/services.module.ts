@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ContentTypeService } from './content-type/content-type.service';
 import { NgxIndexedDBModule } from 'ngx-indexed-db';
 import { dbConfig } from './database/database-config';
+import { DataTypeService } from './data-type/data-type.service';
 
 
 
@@ -17,7 +18,10 @@ export class ServicesModule {
   public static forRoot(): ModuleWithProviders<ServicesModule> {
     return {
       ngModule: ServicesModule,
-      providers: [ContentTypeService]
+      providers: [
+        ContentTypeService,
+        DataTypeService
+      ]
     };
   }
 }

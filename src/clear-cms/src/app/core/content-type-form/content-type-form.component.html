@@ -4,9 +4,24 @@
     <input type="text" formControlName="alias" />
     <span>inherits</span>
     <input type="text" formControlName="parentAlias" />
+    <div class="actions">
+      <button class="success"><span class="fa fa-save"></span> Save</button>
+      <button><span class="fa fa-undo"></span> Revert</button>
+      <button class="danger"><span class="fa fa-times"></span> Delete</button>
+    </div>
   </div>
-  <div formArrayName="properties">
-
+  <div class="properties">
+    <ng-container formArrayName="properties"
+                  *ngFor="let item of propertiesControls; let i = index">
+      <div class="prop-control-group" [formGroupName]="i">
+        <button class="remove-button danger" (click)="removeProperty(i)"><span class="fa fa-trash"></span></button>
+        <select formControlName="dataTypeAlias">
+          <option *ngFor="let dataType of dataTypes$ | async" [value]="dataType.alias">{{dataType.alias}}</option>
+        </select>
+        <input type="text" formControlName="alias">
+      </div>
+    </ng-container>
+    <button class="add-property-button" (click)="addProperty()"><span class="fa fa-plus"></span></button>
   </div>
   <ngx-monaco-editor [options]="editorOptions" [formControl]="form.get('template')"></ngx-monaco-editor>
 </form>

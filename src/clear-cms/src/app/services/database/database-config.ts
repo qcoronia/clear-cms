@@ -4,7 +4,7 @@ export const DB_NAME = 'clear_cms';
 export const storeNames = [
   'contentType',
   'content',
-  'fieldType',
+  'dataType',
 ];
 
 export const dbConfig: DBConfig = {

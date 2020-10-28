@@ -21,6 +21,11 @@ $primary-color-lighter: color-functions.shift-hue-then-lighten($primary-color, 2
 $primary-color-darker: color-functions.shift-hue-then-darken($primary-color, 15);
 $primary-text-color: $text-color;
 
+$success-color: #7fdb83;
+$success-color-lighter: color-functions.shift-hue-then-lighten($success-color, 2);
+$success-color-darker: color-functions.shift-hue-then-darken($success-color, 15);
+$success-text-color: $text-color;
+
 $warning-color: #f8deae;
 $warning-color-lighter: color-functions.shift-hue-then-lighten($warning-color, 2);
 $warning-color-darker: color-functions.shift-hue-then-darken($warning-color, 15);
@@ -58,6 +63,11 @@ $line-separator-color: #eaeaea;
     --clear-cms-primary-color-darker: #{$primary-color-darker};
     --clear-cms-primary-text-color: #{$primary-text-color};
 
+    --clear-cms-success-color: #{$success-color};
+    --clear-cms-success-color-lighter: #{$success-color-lighter};
+    --clear-cms-success-color-darker: #{$success-color-darker};
+    --clear-cms-success-text-color: #{$success-text-color};
+
     --clear-cms-warning-color: #{$warning-color};
     --clear-cms-warning-color-lighter: #{$warning-color-lighter};
     --clear-cms-warning-color-darker: #{$warning-color-darker};
@@ -87,6 +97,19 @@ button {
 
     &:active {
         background-color: var(--clear-cms-default-color-darker);
+    }
+
+    &.success {
+        background-color: var(--clear-cms-success-color);
+        color: var(--clear-cms-success-text-color);
+
+        &:hover {
+            background-color: var(--clear-cms-success-color-lighter);
+        }
+
+        &:active {
+            background-color: var(--clear-cms-success-color-darker);
+        }
     }
 
     &.info {

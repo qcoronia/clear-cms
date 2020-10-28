@@ -1,7 +1,7 @@
 import { Database } from './models/database.model';
 
 export const DEFAULT_DATA: Database = {
-  fieldType: [
+  dataType: [
     {
       alias: 'longText',
       name: 'Long text',
@@ -11,15 +11,18 @@ export const DEFAULT_DATA: Database = {
   contentType: [
     {
       alias: 'node',
-      properties: { },
+      properties: [],
       template: ''
     },
     {
       alias: 'page',
       parentAlias: 'node',
-      properties: {
-        description: 'longText'
-      },
+      properties: [
+        {
+          alias: 'description',
+          dataTypeAlias: 'longText'
+        }
+      ],
       template: '<h1>{{title}}</h1><br><span>{{description}}</span>',
     },
   ],
