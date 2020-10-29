@@ -6,7 +6,7 @@
     <input type="text" formControlName="parentAlias" />
     <div class="actions">
       <button class="success"><span class="fa fa-save"></span> Save</button>
-      <button><span class="fa fa-undo"></span> Revert</button>
+      <button (click)="revertForm()"><span class="fa fa-undo"></span> Revert</button>
       <button class="danger"><span class="fa fa-times"></span> Delete</button>
     </div>
   </div>
