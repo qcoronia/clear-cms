@@ -4,13 +4,14 @@
     <input type="text" formControlName="alias" />
     <span>inherits</span>
     <input type="text" formControlName="parentAlias" />
-    <div class="actions">
-      <button class="success"><span class="fa fa-save"></span> Save</button>
-      <button (click)="revertForm()"><span class="fa fa-undo"></span> Revert</button>
-      <button class="danger"><span class="fa fa-times"></span> Delete</button>
-    </div>
+  </div>
+  <div class="actions">
+    <button class="success"><span class="fa fa-save"></span> Save</button>
+    <button (click)="revertForm()"><span class="fa fa-undo"></span> Revert</button>
+    <button class="danger"><span class="fa fa-times"></span> Delete</button>
   </div>
   <div class="properties">
+    <h5>Properties</h5>
     <ng-container formArrayName="properties"
                   *ngFor="let item of propertiesControls; let i = index">
       <div class="prop-control-group" [formGroupName]="i">
@@ -22,6 +23,14 @@
       </div>
     </ng-container>
     <button class="add-property-button" (click)="addProperty()"><span class="fa fa-plus"></span></button>
+    <h5>Inherited Properties from {{original?.parentAlias}}</h5>
+    <h5>Default Properties</h5>
+    <div class="default-properties">
+      <div class="default-property-group">
+        <input type="text" value="text" readonly />
+        <input type="text" value="title" readonly />
+      </div>
+    </div>
   </div>
   <ngx-monaco-editor [options]="editorOptions" [formControl]="form.get('template')"></ngx-monaco-editor>
 </form>
