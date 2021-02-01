@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { DatabaseService } from 'src/app/services/database/database.service';
+import { format as formatDate } from 'date-fns';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-database-management',
@@ -11,11 +13,13 @@ import { DatabaseService } from 'src/app/services/database/database.service';
 })
 export class DatabaseManagementComponent implements OnInit {
 
-  public backupUrl$: Observable<string>;
+  public backupUrl$: Observable<SafeResourceUrl>;
+  public isBackupUrlReady: boolean = false;
 
   constructor(
     private database: DatabaseService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private sanitizer: DomSanitizer) {
       this.initBackupUrl();
     }
 
@@ -31,9 +35,19 @@ export class DatabaseManagementComponent implements OnInit {
     this.toastr.success('Database cleared');
   }
 
+  public getBackupFileName() {
+    return `site-name_${formatDate(new Date(), 'yyyy-MM-dd')}.clearcms`;
+  }
+
   private initBackupUrl(): void {
-    this.backupUrl$ = this.database.packAllAsObject().pipe(
+    this.backupUrl$ = of({}).pipe(
+      tap(_ => this.isBackupUrlReady = false),
+      switchMap(_ => this.database.packAllAsObject()),
       map(data => JSON.stringify(data)),
+      map(json => `data:text/json;charset=utf-8,${btoa(json)}`),
+      map(dataUrl => this.sanitizer.bypassSecurityTrustResourceUrl(dataUrl)),
+      tap(_ => this.isBackupUrlReady = true),
+      shareReplay(1),
     );
   }
 
