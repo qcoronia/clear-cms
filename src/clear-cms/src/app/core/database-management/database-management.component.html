@@ -3,6 +3,6 @@
   <div>
     <button class="danger" (click)="reset()">Reset to defaults</button>
     <button class="info">Import</button>
-    <button>Backup</button>
+    <a class="button" [href]="backupUrl$ | async" download="{{getBackupFileName()}}">Backup</a>
   </div>
 </section>

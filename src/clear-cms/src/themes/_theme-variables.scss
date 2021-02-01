@@ -85,7 +85,8 @@ $line-separator-color: #eaeaea;
     --clear-cms-line-separator-color: #{$line-separator-color};
 }
 
-button {
+button,
+.button {
     background-color: var(--clear-cms-default-color);
     color: var(--clear-cms-default-text-color);
     border: none;
