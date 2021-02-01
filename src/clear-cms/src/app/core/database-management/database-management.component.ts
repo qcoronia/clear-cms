@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { DatabaseService } from 'src/app/services/database/database.service';
 
 @Component({
@@ -9,9 +11,13 @@ import { DatabaseService } from 'src/app/services/database/database.service';
 })
 export class DatabaseManagementComponent implements OnInit {
 
+  public backupUrl$: Observable<string>;
+
   constructor(
     private database: DatabaseService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService) {
+      this.initBackupUrl();
+    }
 
   public ngOnInit(): void {
   }
@@ -23,6 +29,12 @@ export class DatabaseManagementComponent implements OnInit {
 
   public clear(): void {
     this.toastr.success('Database cleared');
+  }
+
+  private initBackupUrl(): void {
+    this.backupUrl$ = this.database.packAllAsObject().pipe(
+      map(data => JSON.stringify(data)),
+    );
   }
 
 }

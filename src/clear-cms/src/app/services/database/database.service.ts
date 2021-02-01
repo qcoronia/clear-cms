@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable, from, of, zip } from 'rxjs';
+import { Subject, Observable, from, of, zip, forkJoin } from 'rxjs';
 import { filter, shareReplay, switchMap, take, tap, map } from 'rxjs/operators';
 import { NgxIndexedDBService, DBConfig } from 'ngx-indexed-db';
 import { DB_NAME, storeNames } from './database-config';
@@ -63,6 +63,15 @@ export class DatabaseService {
   public selectByIndex<T>(storeName: string, index: string, searchTerm: string): Observable<any> {
     return this.db.getByIndex(DB_NAME, index, searchTerm).pipe(
       map(data => data as T[]),
+    );
+  }
+
+  public packAllAsObject(): Observable<{ [x: string]: any[] }> {
+    return forkJoin(storeNames.map(storeName => this.db.getAll(storeName).pipe(
+      map(storeData => ({ [storeName]: storeData })),
+    ))).pipe(
+      map(storeNameDataPairs => storeNameDataPairs.reduce((agg, cur) => ({...agg, ...cur}), ({}))),
+      take(1),
     );
   }
 }
