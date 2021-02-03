@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import './themes/theme-variables';
 @import './themes/light-theme.scss';
+@import '@sweetalert2/theme-minimal/minimal.scss';
 
 body {
     margin: 0px;
@@ -43,6 +44,12 @@ body {
         &:active,
         &:focus {
             border: 1px solid var(--clear-cms-line-separator-color);
+        }
+
+        &::placeholder {
+            opacity: 0.5;
+            font-style: italic;
+            font-weight: normal;
         }
     }
 }

@@ -3,6 +3,11 @@ import { Database } from './models/database.model';
 export const DEFAULT_DATA: Database = {
   dataType: [
     {
+      alias: 'text',
+      name: 'Text',
+      type: 'string',
+    },
+    {
       alias: 'longText',
       name: 'Long text',
       type: 'string',
@@ -12,18 +17,25 @@ export const DEFAULT_DATA: Database = {
     {
       alias: 'node',
       properties: [],
-      template: ''
     },
     {
       alias: 'page',
       parentAlias: 'node',
+      templateAlias: 'master',
       properties: [
+        {
+          alias: 'header',
+          dataTypeAlias: 'text'
+        },
         {
           alias: 'description',
           dataTypeAlias: 'longText'
         }
       ],
-      template: '<h1>{{title}}</h1><br><span>{{description}}</span>',
+      templateMapping: [
+        { slot: 'header', propertyAlias: 'header' },
+        { slot: 'description', propertyAlias: 'description' },
+      ],
     },
   ],
   content: [
@@ -37,4 +49,28 @@ export const DEFAULT_DATA: Database = {
       },
     },
   ],
+  template: [
+    {
+      alias: 'master',
+      content: `<!doctype html>
+      <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <title>{{title}}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+      </head>
+      <body>
+        {{TEMPLATE.CONTENT}}
+      </body>
+      </html>`
+    },
+    {
+      alias: 'home',
+      parentAlias: 'master',
+      content: `<h1>{{header}}</h1>
+      <br>
+      <span>{{description}}</span>`
+    }
+  ]
 };

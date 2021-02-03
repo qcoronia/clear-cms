@@ -6,6 +6,8 @@ import { ContentTypeFormComponent } from '../content-type-form/content-type-form
 
 const routes: Routes = [
   { path: '', component: ContentTypeExplorerComponent, children: [
+    { path: 'new', component: ContentTypeFormComponent },
+    { path: 'new/:parentAlias', component: ContentTypeFormComponent },
     { path: 'edit/:alias', component: ContentTypeFormComponent },
   ]},
 ];

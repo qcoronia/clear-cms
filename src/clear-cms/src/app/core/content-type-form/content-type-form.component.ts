@@ -1,13 +1,16 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ReplaySubject, Subject, Observable } from 'rxjs';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ReplaySubject, Subject, Observable, of } from 'rxjs';
 import { ContentType } from 'src/app/services/database/models/contentType.model';
-import { takeWhile, takeUntil, tap, switchMap, shareReplay, pairwise, map, filter } from 'rxjs/operators';
-import { FormBuilder, FormGroup, FormArray, AbstractControl } from '@angular/forms';
+import { takeWhile, takeUntil, tap, switchMap, shareReplay, pairwise, map, filter, defaultIfEmpty, take, catchError } from 'rxjs/operators';
+import { FormBuilder, FormGroup, FormArray, AbstractControl, Validators } from '@angular/forms';
 import { ContentTypeService } from 'src/app/services/content-type/content-type.service';
 import { DataTypeService } from 'src/app/services/data-type/data-type.service';
 import { DataType } from 'src/app/services/database/models/data-type.model';
 import { templateJitUrl } from '@angular/compiler';
+import { Template } from 'src/app/services/database/models/template.model';
+import { TemplateService } from 'src/app/services/template/template.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-content-type-form',
@@ -20,11 +23,12 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
   public original: ContentType;
 
   public dataTypes$: Observable<DataType[]>;
+  public templates$: Observable<Template[]>;
 
   public form: FormGroup;
   public editorOptions: any;
 
-  private whenNavigated$: ReplaySubject<string>;
+  private whenNavigated$: ReplaySubject<Params>;
   private whenDestroyed$: Subject<void>;
   private whenFormResetted$: Subject<void>;
 
@@ -34,15 +38,17 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private contentType: ContentTypeService,
-    private dataType: DataTypeService) {
+    private dataType: DataTypeService,
+    private template: TemplateService,
+    private toastr: ToastrService) {
     this.whenNavigated$ = new ReplaySubject<any>();
     this.whenDestroyed$ = new Subject<any>();
     this.whenFormResetted$ = new Subject<any>();
 
     this.form = this.formBuilder.group({
-      alias: [null],
+      alias: [null, Validators.compose([Validators.required, Validators.pattern('^[a-z]{1}[a-zA-Z]*$')])],
       parentAlias: [null],
-      template: [null],
+      templateAlias: [null],
       properties: this.formBuilder.array([this.newPropertyFormGroup()]),
     });
 
@@ -54,6 +60,9 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
     this.dataTypes$ = this.dataType.getAll().pipe(
       shareReplay(1)
     );
+    this.templates$ = this.template.getAll().pipe(
+      shareReplay(1)
+    );
     this.propertyAliasChanged$ = new Subject<string>();
     this.propertyAliasChanged$.pipe(
       pairwise(),
@@ -62,10 +71,12 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => this.whenNavigated$.next(params.alias));
+    this.route.params.subscribe(params => this.whenNavigated$.next(params));
 
     this.whenNavigated$.pipe(
-      switchMap(alias => this.contentType.getOne(alias)),
+      switchMap(params => !!params.alias
+        ? this.contentType.getOne(params.alias)
+        : of({ parentAlias: params.parentAlias, properties: [] } as ContentType)),
       tap(contentType => this.original = contentType),
       tap(contentType => this.revertForm()),
       takeUntil(this.whenDestroyed$)
@@ -112,7 +123,7 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
     this.form.patchValue({
       alias: contentType.alias,
       parentAlias: contentType.parentAlias,
-      template: contentType.template,
+      templateAlias: contentType.templateAlias,
     });
     while (this.propertiesControls.length > 0) {
       this.propertiesControls.pop();
@@ -125,6 +136,15 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
         dataTypeAlias: prop.dataTypeAlias,
       });
     }
+  }
+
+  public submit(): void {
+    const contentType = this.form.getRawValue() as ContentType;
+    this.contentType.create(contentType).pipe(
+      take(1),
+    ).subscribe(
+      _ => this.toastr.success(`Content Type '${contentType.alias}' created`),
+      err => this.toastr.error(`Failed to create Content Type '${contentType.alias}'`));
   }
 
 }

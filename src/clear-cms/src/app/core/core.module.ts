@@ -7,6 +7,7 @@ import { ContentTypeExplorerModule } from './content-type-explorer/content-type-
 import { ContentTypeListModule } from './content-type-list/content-type-list.module';
 import { ContentTypeFormModule } from './content-type-form/content-type-form.module';
 import { DatabaseManagementModule } from './database-management/database-management.module';
+import { TemplateMappingEditorModule } from './template-mapping-editor/template-mapping-editor.module';
 
 
 
@@ -22,6 +23,7 @@ import { DatabaseManagementModule } from './database-management/database-managem
     ContentTypeListModule,
     ContentTypeFormModule,
     DatabaseManagementModule,
+    TemplateMappingEditorModule,
   ],
   exports: [
     NavigationModule,
@@ -29,6 +31,7 @@ import { DatabaseManagementModule } from './database-management/database-managem
     FooterModule,
     ContentTypeExplorerModule,
     DatabaseManagementModule,
+    TemplateMappingEditorModule,
   ]
 })
 export class CoreModule { }

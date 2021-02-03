@@ -4,7 +4,11 @@
   <div class="node">
     <span class="fa fa-caret-right caret" [class.hidden]="!node.children || node.children.length <= 0" (click)="toggle($event)"></span>
     <a class="text" [routerLink]="['edit', node.name]" routerLinkActive="current">{{node.name}}</a>
-    <button>...</button>
+    <div class="actions">
+      <button *ngFor="let contextMenuItem of contextMenu.items" [title]="contextMenuItem.label">
+        <span class="fa {{contextMenuItem.icon}}" (click)="contextMenuItem.action(node.name)"></span>
+      </button>
+    </div>
   </div>
   <ul *ngIf="!!node.children && node.children.length > 0">
     <li *ngFor="let child of node.children">

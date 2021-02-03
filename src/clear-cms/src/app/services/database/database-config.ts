@@ -5,6 +5,7 @@ export const storeNames = [
   'contentType',
   'content',
   'dataType',
+  'template',
 ];
 
 export const dbConfig: DBConfig = {

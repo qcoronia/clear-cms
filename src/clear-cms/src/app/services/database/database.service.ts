@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable, from, of, zip, forkJoin } from 'rxjs';
-import { filter, shareReplay, switchMap, take, tap, map } from 'rxjs/operators';
+import { filter, shareReplay, switchMap, take, tap, map, catchError } from 'rxjs/operators';
 import { NgxIndexedDBService, DBConfig } from 'ngx-indexed-db';
 import { DB_NAME, storeNames } from './database-config';
 import { DatabaseOptions } from './database-options';
@@ -63,6 +63,26 @@ export class DatabaseService {
   public selectByIndex<T>(storeName: string, index: string, searchTerm: string): Observable<any> {
     return this.db.getByIndex(DB_NAME, index, searchTerm).pipe(
       map(data => data as T[]),
+    );
+  }
+
+  public create<T>(storeName: string, entity: T): Observable<number> {
+    return this.db.add(storeName, entity).pipe(
+      map(_ => 0),
+      catchError(err => {
+        console.warn('ClearCMS.DatabaseService', err);
+        return of(1);
+      })
+    );
+  }
+
+  public deleteOne<T>(storeName: string, alias: string): Observable<number> {
+    return this.db.delete(storeName, alias).pipe(
+      map(_ => 0),
+      catchError(err => {
+        console.warn('ClearCMS.DatabaseService', err);
+        return of(1);
+      })
     );
   }
 

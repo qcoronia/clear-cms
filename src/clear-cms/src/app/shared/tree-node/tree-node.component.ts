@@ -8,8 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TreeNodeComponent implements OnInit {
 
   @Input() node: TreeNode;
+  @Input() contextMenu: ContextMenu;
 
-  constructor() { }
+  constructor() {
+    this.contextMenu = new ContextMenu();
+  }
 
   ngOnInit(): void {
   }
@@ -25,4 +28,18 @@ export class TreeNodeComponent implements OnInit {
 export class TreeNode {
   public name: string;
   public children: TreeNode[];
+}
+
+export class ContextMenu {
+  public items: ContextMenuItem[];
+
+  constructor() {
+    this.items = [];
+  }
+}
+
+export class ContextMenuItem {
+  public label: string;
+  public icon: string;
+  public action: (alias: string) => void;
 }

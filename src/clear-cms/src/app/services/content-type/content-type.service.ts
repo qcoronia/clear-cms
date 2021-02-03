@@ -22,4 +22,12 @@ export class ContentTypeService {
   public getOne(alias: string): Observable<ContentType> {
     return this.database.selectOne<ContentType>('contentType', alias);
   }
+
+  public create(contentType: ContentType): Observable<number> {
+    return this.database.create<ContentType>('contentType', contentType);
+  }
+
+  public delete(alias: string): Observable<number> {
+    return this.database.deleteOne<ContentType>('contentType', alias);
+  }
 }
