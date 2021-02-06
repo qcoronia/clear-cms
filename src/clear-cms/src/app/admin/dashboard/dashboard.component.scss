@@ -1,0 +1,11 @@
+:host {
+    display: grid;
+    grid-auto-columns: 4;
+    grid-auto-flow: column;
+    gap: 2.5rem;
+
+    > * {
+        flex-grow: 0;
+        flex-basis: 0;
+    }
+}
