@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { DashboardWidgetModule } from 'src/app/shared/dashboard-widget/dashboard-widget.module';
 
 
 
@@ -10,6 +11,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
   imports: [
     CommonModule,
     DashboardRoutingModule,
+
+    DashboardWidgetModule,
   ],
   exports: [DashboardComponent]
 })

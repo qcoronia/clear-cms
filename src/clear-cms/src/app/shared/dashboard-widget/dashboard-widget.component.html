@@ -1,0 +1,7 @@
+<span class="value">{{info?.value || '&nbsp;'}}</span>
+<span class="label">{{info?.label || '&nbsp;'}}</span>
+<span class="subtitle">{{info?.subtitle || '&nbsp;'}}</span>
+
+<ng-template *ngIf="!info">
+  <app-spinner></app-spinner>
+</ng-template>

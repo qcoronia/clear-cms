@@ -5,6 +5,7 @@ import { NgxIndexedDBModule } from 'ngx-indexed-db';
 import { dbConfig } from './database/database-config';
 import { DataTypeService } from './data-type/data-type.service';
 import { TemplateService } from './template/template.service';
+import { ContentService } from './content/content.service';
 
 
 
@@ -20,6 +21,7 @@ export class ServicesModule {
     return {
       ngModule: ServicesModule,
       providers: [
+        ContentService,
         ContentTypeService,
         DataTypeService,
         TemplateService,

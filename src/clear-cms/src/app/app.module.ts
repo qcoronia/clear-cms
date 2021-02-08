@@ -3,11 +3,9 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
-import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
 import { ServicesModule } from './services/services.module';
 
 @NgModule({
@@ -23,7 +21,6 @@ import { ServicesModule } from './services/services.module';
       positionClass: 'toast-top-center',
     }),
 
-    CoreModule,
     ServicesModule.forRoot(),
   ],
   providers: [],
