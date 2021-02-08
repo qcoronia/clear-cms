@@ -57,7 +57,7 @@ export class ContentTypeListComponent implements OnInit {
     };
     this.rootContextMenu = {
       items: [
-        { label: 'Add Child Node', icon: 'fa-plus', action: _ => this.router.navigate(['new'], { relativeTo: this.route }) },
+        { label: 'Add Root Node', icon: 'fa-plus', action: _ => this.router.navigate(['new'], { relativeTo: this.route }) },
       ]
     };
   }

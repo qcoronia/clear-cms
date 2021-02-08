@@ -46,7 +46,7 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
     this.whenFormResetted$ = new Subject<any>();
 
     this.form = this.formBuilder.group({
-      alias: [null, Validators.compose([Validators.required, Validators.pattern('^[a-z]{1}[a-zA-Z]*$')])],
+      alias: [null],
       parentAlias: [null],
       templateAlias: [null],
       properties: this.formBuilder.array([this.newPropertyFormGroup()]),

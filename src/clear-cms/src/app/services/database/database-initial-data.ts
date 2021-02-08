@@ -4,11 +4,13 @@ export const DEFAULT_DATA: Database = {
   dataType: [
     {
       alias: 'text',
+      sortOrder: 0,
       name: 'Text',
       type: 'string',
     },
     {
       alias: 'longText',
+      sortOrder: 1,
       name: 'Long text',
       type: 'string',
     },
@@ -16,11 +18,13 @@ export const DEFAULT_DATA: Database = {
   contentType: [
     {
       alias: 'node',
+      sortOrder: 0,
       properties: [],
     },
     {
       alias: 'page',
       parentAlias: 'node',
+      sortOrder: 1,
       templateAlias: 'master',
       properties: [
         {
@@ -41,6 +45,7 @@ export const DEFAULT_DATA: Database = {
   content: [
     {
       alias: 'home',
+      sortOrder: 0,
       title: 'My Simple Site',
       urlFragment: '',
       contentTypeAlias: 'page',
@@ -52,6 +57,7 @@ export const DEFAULT_DATA: Database = {
   template: [
     {
       alias: 'master',
+      sortOrder: 0,
       content: `<!doctype html>
       <html lang="en">
       <head>
@@ -67,6 +73,7 @@ export const DEFAULT_DATA: Database = {
     },
     {
       alias: 'home',
+      sortOrder: 1,
       parentAlias: 'master',
       content: `<h1>{{header}}</h1>
       <br>

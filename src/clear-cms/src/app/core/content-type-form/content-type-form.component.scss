@@ -106,5 +106,16 @@
                 }
             }
         }
+
+        .template {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            input,
+            select {
+                margin: 0;
+            }
+        }
     }
 }

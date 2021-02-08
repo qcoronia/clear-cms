@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DatabaseService } from '../database/database.service';
-import { map, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ContentType } from '../database/models/contentType.model';
 
@@ -24,7 +24,11 @@ export class ContentTypeService {
   }
 
   public create(contentType: ContentType): Observable<number> {
-    return this.database.create<ContentType>('contentType', contentType);
+    return this.database.selectAll<ContentType>('contentType').pipe(
+      map(contentTypes => contentTypes.filter(e => e.parentAlias === contentType.parentAlias).length),
+      map(sortOrder => ({ ...contentType, sortOrder })),
+      switchMap(sortedContentType => this.database.create<ContentType>('contentType', sortedContentType)),
+    );
   }
 
   public delete(alias: string): Observable<number> {

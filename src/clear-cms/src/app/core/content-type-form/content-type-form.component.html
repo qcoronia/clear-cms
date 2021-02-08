@@ -6,9 +6,8 @@
     <input type="text" formControlName="parentAlias" />
   </div>
   <div class="actions">
+    <button (click)="revertForm()"><span class="fa fa-undo"></span> Revert</button>ng s --port 4300
     <button class="success" (click)="submit()"><span class="fa fa-save"></span> Save</button>
-    <button (click)="revertForm()"><span class="fa fa-undo"></span> Revert</button>
-    <button class="danger"><span class="fa fa-times"></span> Delete</button>
   </div>
   <div class="properties">
     <h5>Properties</h5>
@@ -33,14 +32,12 @@
     </div>
   </div>
   <div class="template">
-    <div class="template-selector">
-      <label for="template-picker">Template: </label>
-      <select formControlName="templateAlias" list="templates"></select>
-      <datalist id="templates">
-        <ng-container *ngFor="let template of templates$ | async">
-          <option [value]="template.alias">{{template.alias}}</option>
-        </ng-container>
-      </datalist>
-    </div>
+    <h5>Template</h5>
+    <input formControlName="templateAlias" list="templates"/>
+    <datalist id="templates">
+      <ng-container *ngFor="let template of templates$ | async">
+        <option [value]="template.alias">{{template.alias}}</option>
+      </ng-container>
+    </datalist>
   </div>
 </form>
