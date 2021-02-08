@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', component: SettingsComponent, children: [
     { path: 'content-types', loadChildren: () => import('src/app/core/content-type-explorer/content-type-explorer.module')
       .then(m => m.ContentTypeExplorerModule) },
-    { path: 'template-parts', component: SettingsComponent },
+    { path: 'templates', component: SettingsComponent },
     { path: 'database', component: DatabaseManagementComponent },
   ]},
 ];
