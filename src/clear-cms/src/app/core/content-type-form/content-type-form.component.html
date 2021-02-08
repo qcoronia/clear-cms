@@ -3,10 +3,14 @@
     <span class="fa fa-key"></span>
     <input type="text" formControlName="alias" placeholder="Enter Alias..." appInputPattern="[A-Za-z_]" />
     <span>inherits</span>
-    <input type="text" formControlName="parentAlias" />
+    <input type="text" formControlName="parentAlias" list="content-type-aliases" />
+    <datalist id="content-type-aliases">
+      <option *ngFor="let contentTypeAlias of contentTypeAliases$ | async"
+              [value]="contentTypeAlias">{{contentTypeAlias}}</option>
+    </datalist>
   </div>
   <div class="actions">
-    <button (click)="revertForm()"><span class="fa fa-undo"></span> Revert</button>ng s --port 4300
+    <button (click)="revertForm()"><span class="fa fa-undo"></span> Revert</button>
     <button class="success" (click)="submit()"><span class="fa fa-save"></span> Save</button>
   </div>
   <div class="properties">

@@ -22,6 +22,7 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
   public alias: string;
   public original: ContentType;
 
+  public contentTypeAliases$: Observable<string[]>;
   public dataTypes$: Observable<DataType[]>;
   public templates$: Observable<Template[]>;
 
@@ -57,6 +58,10 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
       language: 'html',
     };
 
+    this.contentTypeAliases$ = this.contentType.getAll().pipe(
+      map(e => e.map(f => f.alias)),
+      shareReplay(1)
+    );
     this.dataTypes$ = this.dataType.getAll().pipe(
       shareReplay(1)
     );
