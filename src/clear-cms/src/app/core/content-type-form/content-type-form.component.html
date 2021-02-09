@@ -1,10 +1,13 @@
 <form [formGroup]="form">
-  <div class="header">
+  <div class="alias">
     <span class="fa fa-key"></span>
     <input type="text" formControlName="alias" placeholder="Enter Alias..." appInputPattern="[A-Za-z_]" />
-    <span>inherits</span>
-    <input type="text" formControlName="parentAlias" list="content-type-aliases" />
+  </div>
+  <div class="parent">
+    <label for="parent-alias">Parent</label>
+    <input type="text" id="parent-alias" formControlName="parentAlias" list="content-type-aliases"/>
     <datalist id="content-type-aliases">
+      <option [value]="''">No Parent (root)</option>
       <option *ngFor="let contentTypeAlias of contentTypeAliases$ | async"
               [value]="contentTypeAlias">{{contentTypeAlias}}</option>
     </datalist>
@@ -37,11 +40,15 @@
   </div>
   <div class="template">
     <h5>Template</h5>
-    <input formControlName="templateAlias" list="templates"/>
-    <datalist id="templates">
-      <ng-container *ngFor="let template of templates$ | async">
-        <option [value]="template.alias">{{template.alias}}</option>
-      </ng-container>
-    </datalist>
+    <ng-container *ngIf="(templates$ | async)?.length > 0 else noTemplates">
+      <input type="text" id="template-alias" formControlName="templateAlias" list="templates-aliases" />
+      <datalist id="templates-aliases">
+        <option *ngFor="let template of templates$ | async">
+                [value]="template.alias">{{template.alias}}</option>
+      </datalist>
+    </ng-container>
+    <ng-template #noTemplates>
+      <small><i>No Templates Created Yet</i></small>
+    </ng-template>
   </div>
 </form>
