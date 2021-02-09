@@ -1,1 +1,22 @@
-<p>template-form works!</p>
+<form [formGroup]="form">
+  <div class="alias">
+    <span class="fa fa-key"></span>
+    <input type="text" formControlName="alias" placeholder="Enter Alias..." appInputPattern="[A-Za-z_]" />
+  </div>
+  <div class="parent">
+    <label for="parent-alias">Parent</label>
+    <input type="text" id="parent-alias" formControlName="parentAlias" list="template-aliases"/>
+    <datalist id="template-aliases">
+      <option [value]="''">No Parent (root)</option>
+      <option *ngFor="let templateAlias of templateAliases$ | async"
+              [value]="templateAlias">{{templateAlias}}</option>
+    </datalist>
+  </div>
+  <div class="actions">
+    <button (click)="revertForm()"><span class="fa fa-undo"></span> Revert</button>
+    <button class="success" (click)="submit()"><span class="fa fa-save"></span> Save</button>
+  </div>
+  <div class="content">
+    <ngx-monaco-editor [options]="editorOptions" formControlName="content"></ngx-monaco-editor>
+  </div>
+</form>

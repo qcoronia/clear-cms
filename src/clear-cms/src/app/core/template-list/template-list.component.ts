@@ -28,9 +28,9 @@ export class TemplateListComponent implements OnInit {
   ngOnInit(): void {
     this.contentType.getAll().pipe(
       map((res: Template[]) => {
-        const normalize = (ct => ({
-          name: ct.alias,
-          children: res.filter(f => f.parentAlias === ct.alias).map(normalize),
+        const normalize = (t => ({
+          name: t.alias,
+          children: res.filter(f => f.parentAlias === t.alias).map(normalize),
         } as TreeNode));
 
         return res.filter(e => !e.parentAlias).map(normalize);
@@ -46,7 +46,7 @@ export class TemplateListComponent implements OnInit {
       items: [
         { label: 'Add Child Node', icon: 'fa-plus', action: alias => this.router.navigate(['new', alias], { relativeTo: this.route }) },
         { label: 'Delete Node', icon: 'fa-trash', action: alias => Swal
-          .fire(`Delete the Content Type [${alias}]?`, '', 'warning')
+          .fire(`Delete the Template [${alias}]?`, '', 'warning')
           .then(res => {
             // if (res.isConfirmed) {
             //   this.contentType.delete(node.alias);
