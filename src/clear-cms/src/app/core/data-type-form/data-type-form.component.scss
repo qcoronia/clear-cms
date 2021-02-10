@@ -1,0 +1,55 @@
+:host {
+    height: 100%;
+    width: 100%;
+
+    form {
+        display: grid;
+        height: 100%;
+        width: 100%;
+        grid-template-areas:
+            'header header action'
+            'form form form';
+        grid-template-columns: 20rem 1fr 1fr;
+        grid-template-rows: 4rem 1fr;
+        column-gap: 1rem;
+
+        app-entity-form-header {
+            display: flex;
+            width: 100%;
+            grid-area: header;
+        }
+
+        .actions {
+            grid-area: action;
+            justify-self: flex-end;
+            align-self: center;
+
+            button {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+            }
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+
+            input,
+            select,
+            textarea {
+                margin: 0;
+            }
+        }
+
+        .editor {
+            display: flex;
+            flex-direction: column;
+
+            input,
+            select,
+            textarea {
+                margin: 0;
+            }
+        }
+    }
+}

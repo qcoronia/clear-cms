@@ -1,0 +1,10 @@
+<div class="root-node">
+  <div class="actions">
+    <button *ngFor="let rootContextMenuItem of rootContextMenu.items" [title]="rootContextMenuItem.label">
+      <span class="fa {{rootContextMenuItem.icon}}" (click)="rootContextMenuItem.action(null)"></span>
+    </button>
+  </div>
+</div>
+<ng-container *ngFor="let rootNode of rootNodes">
+  <app-tree-node [node]="rootNode" [contextMenu]="contextMenu"></app-tree-node>
+</ng-container>

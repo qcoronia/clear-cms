@@ -1,0 +1,13 @@
+:host {
+    .root-node {
+        display: flex;
+        width: 100%;
+        text-align: right;
+        align-items: center;
+        justify-content: flex-end;
+
+        &:hover .actions {
+            visibility: visible;
+        }
+    }
+}

@@ -1,0 +1,24 @@
+:host {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+    grid-template-areas: 'list form';
+    grid-template-columns: 250px 1fr;
+
+    &::first-child {
+        grid-area: 'list';
+    }
+
+    &::nth-child(2) {
+        grid-area: 'form';
+    }
+
+    *:not(:last-child) {
+        border-right: 1px solid var(--clear-cms-line-separator-color);
+    }
+
+    router-outlet {
+        display: none;
+    }
+}

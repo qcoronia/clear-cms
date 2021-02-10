@@ -1,0 +1,42 @@
+<form [formGroup]="form">
+  <app-entity-form-header [formGroup]="form" [parentAliases$]="dataTypeAliases$"></app-entity-form-header>
+  <div class="actions">
+    <button (click)="revertForm()"><span class="fa fa-undo"></span> Revert</button>
+    <button class="success" (click)="submit()"><span class="fa fa-save"></span> Save</button>
+  </div>
+  <div class="form">
+    <h5>Display Name</h5>
+    <input type="text" formControlName="name" required />
+    <h5>Type</h5>
+    <select formControlName="type" required >
+      <option value="string">Text</option>
+      <option value="number">Number</option>
+      <option value="boolean">True / False</option>
+      <option value="date">Date</option>
+    </select>
+  </div>
+  <div class="editor">
+    <h5>Editor</h5>
+    <select formControlName="editor" required>
+      <option value="text">Textbox</option>
+      <option value="textarea">Text Area</option>
+      <option value="color">Color</option>
+      <option value="email">Email</option>
+      <option value="tel">Tel</option>
+      <option value="url">Url</option>
+      <option value="checkbox">Checkbox</option>
+      <option value="number">Number</option>
+      <option value="date">Date</option>
+      <option value="month">Month</option>
+      <option value="week">Week</option>
+      <option value="time">Time</option>
+    </select>
+    <h5>Preview</h5>
+    <ng-container *ngIf="form.get('editor').value === 'textarea' else standardInput">
+      <textarea rows="5"></textarea>
+    </ng-container>
+    <ng-template #standardInput>
+      <input [type]="form.get('editor').value" />
+    </ng-template>
+  </div>
+</form>

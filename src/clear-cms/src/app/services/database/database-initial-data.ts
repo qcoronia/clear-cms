@@ -7,12 +7,14 @@ export const DEFAULT_DATA: Database = {
       sortOrder: 0,
       name: 'Text',
       type: 'string',
+      editor: 'text',
     },
     {
       alias: 'longText',
       sortOrder: 1,
       name: 'Long text',
       type: 'string',
+      editor: 'text',
     },
   ],
   contentType: [
