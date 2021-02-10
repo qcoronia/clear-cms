@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { DataTypeService } from 'src/app/services/data-type/data-type.service';
 
 @Component({
   selector: 'app-property-editor',
@@ -7,7 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PropertyEditorComponent implements OnInit {
 
-  constructor() { }
+  @Input() public isReadOnly: boolean;
+  @Input() public dataTypeAlias: string;
+  @Input() public value: string;
+
+  public dataTypeAliases$: Observable<string[]>;
+
+  constructor(private dataType: DataTypeService) {
+    this.dataTypeAliases$ = this.dataType.store.all$.pipe(
+      map(dataTypes => dataTypes.map(f => f.alias)),
+    );
+  }
 
   ngOnInit(): void {
   }
