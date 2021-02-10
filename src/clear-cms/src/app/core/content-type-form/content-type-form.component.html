@@ -4,13 +4,17 @@
     <input type="text" formControlName="alias" placeholder="Enter Alias..." appInputPattern="[A-Za-z_]" />
   </div>
   <div class="parent">
-    <label for="parent-alias">Parent</label>
-    <input type="text" id="parent-alias" formControlName="parentAlias" list="content-type-aliases"/>
-    <datalist id="content-type-aliases">
-      <option [value]="''">No Parent (root)</option>
-      <option *ngFor="let contentTypeAlias of contentTypeAliases$ | async"
-              [value]="contentTypeAlias">{{contentTypeAlias}}</option>
-    </datalist>
+    <ng-container *ngIf="(contentTypeAliases$ | async)?.length > 0 else noContentTypes">
+      <label for="parent-alias">Parent</label>
+      <input type="text" id="parent-alias" formControlName="parentAlias" list="content-type-aliases"/>
+      <datalist id="content-type-aliases">
+        <option *ngFor="let contentTypeAlias of contentTypeAliases$ | async"
+                [value]="contentTypeAlias">{{contentTypeAlias}}</option>
+      </datalist>
+    </ng-container>
+    <ng-template #noContentTypes>
+      <small><i>This is the first Content Type</i></small>
+    </ng-template>
   </div>
   <div class="actions">
     <button (click)="revertForm()"><span class="fa fa-undo"></span> Revert</button>
@@ -33,10 +37,9 @@
     <h5 *ngIf="!!original?.parentAlias">Inherited Properties from {{original?.parentAlias}}</h5>
     <h5>Default Properties</h5>
     <div class="default-properties">
-      <div class="default-property-group">
-        <input type="text" value="text" readonly />
-        <input type="text" value="title" readonly />
-      </div>
+      <ng-container *ngFor="let prop of defaultProperties">
+        <app-property-editor [isReadOnly]="true" [dataTypeAlias]="prop.dataTypeAlias" [value]="prop.alias"></app-property-editor>
+      </ng-container>
     </div>
   </div>
   <div class="template">
@@ -49,7 +52,7 @@
       </datalist>
     </ng-container>
     <ng-template #noTemplates>
-      <small><i>No Templates Created Yet</i></small>
+      <small><i>No Templates created yet</i></small>
     </ng-template>
   </div>
 </form>

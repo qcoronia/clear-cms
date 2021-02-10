@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ReplaySubject, Subject, Observable, of } from 'rxjs';
-import { ContentType } from 'src/app/services/database/models/contentType.model';
+import { ContentType, ContentTypeProperty } from 'src/app/services/database/models/contentType.model';
 import { takeWhile, takeUntil, tap, switchMap, shareReplay, pairwise, map, filter, defaultIfEmpty, take, catchError } from 'rxjs/operators';
 import { FormBuilder, FormGroup, FormArray, AbstractControl, Validators } from '@angular/forms';
 import { ContentTypeService } from 'src/app/services/content-type/content-type.service';
@@ -28,6 +28,7 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
   public editorOptions: any;
+  public defaultProperties: ContentTypeProperty[];
 
   private whenNavigated$: ReplaySubject<Params>;
   private whenDestroyed$: Subject<void>;
@@ -58,8 +59,14 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
       language: 'html',
     };
 
+    this.defaultProperties = [
+      { dataTypeAlias: 'text', alias: 'title' },
+    ];
+
     this.contentTypeAliases$ = this.contentType.store.all$.pipe(
-      map(e => e.map(f => f.alias)),
+      map(e => e
+        .map(f => f.alias)
+        .filter(alias => alias !== this.form.get('alias').value)),
       shareReplay(1)
     );
     this.dataTypes$ = this.dataType.store.all$.pipe(

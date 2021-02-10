@@ -101,6 +101,12 @@
         .inherited-properties {
             display: flex;
             width: 100%;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+
+            app-property-editor {
+                flex-grow: 1;
+            }
 
             .default-property-group,
             .inherited-property-group {
