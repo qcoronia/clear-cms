@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+        margin: 0;
+    }
+
+    .data-type {
+        width: 100%;
+        font-size: 0.7rem;
+        padding: 0.1rem;
+    }
+}

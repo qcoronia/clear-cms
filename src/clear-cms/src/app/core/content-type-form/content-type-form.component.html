@@ -22,10 +22,11 @@
                   *ngFor="let item of propertiesControls; let i = index">
       <div class="prop-control-group" [formGroupName]="i">
         <button class="remove-button danger" (click)="removeProperty(i)"><span class="fa fa-trash"></span></button>
-        <select formControlName="dataTypeAlias">
+        <app-property-editor></app-property-editor>
+        <!-- <select formControlName="dataTypeAlias">
           <option *ngFor="let dataType of dataTypes$ | async" [value]="dataType.alias">{{dataType.alias}}</option>
         </select>
-        <input type="text" formControlName="alias">
+        <input type="text" formControlName="alias"> -->
       </div>
     </ng-container>
     <button class="add-property-button" (click)="addProperty()"><span class="fa fa-plus"></span></button>

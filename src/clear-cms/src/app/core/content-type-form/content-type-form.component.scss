@@ -75,6 +75,12 @@
         .prop-control-group {
             display: flex;
             width: 100%;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+
+            app-property-editor {
+                flex-grow: 1;
+            }
 
             input {
                 max-width: 50%;
@@ -88,11 +94,6 @@
             select {
                 margin-left: 0px;
                 margin-right: 0px;
-            }
-
-            .remove-button {
-                margin-top: 0.5rem;
-                margin-bottom: 0.5rem;
             }
         }
 
