@@ -1,0 +1,19 @@
+<ng-container [formGroup]="formGroup">
+  <div class="alias">
+    <span class="fa fa-key"></span>
+    <input type="text" formControlName="alias" placeholder="Enter Alias..." appInputPattern="[A-Za-z_]" required />
+  </div>
+  <div class="parent">
+    <ng-container *ngIf="(parentAliases$ | async)?.length > 0 else noAvailableParents">
+      <label for="parent-alias">Parent</label>
+      <input type="text" id="parent-alias" formControlName="parentAlias" list="parent-aliases"/>
+      <datalist id="parent-aliases">
+        <option *ngFor="let parentAlias of parentAliases$ | async"
+                [value]="parentAlias">{{parentAlias}}</option>
+      </datalist>
+    </ng-container>
+    <ng-template #noAvailableParents>
+      <small><i>This is the first node</i></small>
+    </ng-template>
+  </div>
+</ng-container>

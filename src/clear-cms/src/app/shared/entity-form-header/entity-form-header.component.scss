@@ -1,0 +1,29 @@
+:host {
+    display: flex;
+    gap: 1rem;
+
+    .alias {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        grid-area: alias;
+
+        input {
+            font-weight: bold;
+            font-size: large;
+            flex-grow: 1;
+        }
+    }
+
+    .parent {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        grid-area: parent;
+
+        input {
+            flex-grow: 1;
+        }
+    }
+
+}
