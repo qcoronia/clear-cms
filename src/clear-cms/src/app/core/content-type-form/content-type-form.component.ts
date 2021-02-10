@@ -58,14 +58,14 @@ export class ContentTypeFormComponent implements OnInit, OnDestroy {
       language: 'html',
     };
 
-    this.contentTypeAliases$ = this.contentType.getAll().pipe(
+    this.contentTypeAliases$ = this.contentType.store.all$.pipe(
       map(e => e.map(f => f.alias)),
       shareReplay(1)
     );
-    this.dataTypes$ = this.dataType.getAll().pipe(
+    this.dataTypes$ = this.dataType.store.all$.pipe(
       shareReplay(1)
     );
-    this.templates$ = this.template.getAll().pipe(
+    this.templates$ = this.template.store.all$.pipe(
       shareReplay(1)
     );
     this.propertyAliasChanged$ = new Subject<string>();

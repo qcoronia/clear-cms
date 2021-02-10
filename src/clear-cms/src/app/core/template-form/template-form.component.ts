@@ -50,7 +50,7 @@ export class TemplateFormComponent implements OnInit {
       language: 'html',
     };
 
-    this.templates$ = this.template.getAll().pipe(
+    this.templates$ = this.template.store.all$.pipe(
       shareReplay(1)
     );
     this.templateAliases$ = this.templates$.pipe(

@@ -26,7 +26,7 @@ export class TemplateListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.contentType.getAll().pipe(
+    this.contentType.store.all$.pipe(
       map((res: Template[]) => {
         const normalize = (t => ({
           name: t.alias,

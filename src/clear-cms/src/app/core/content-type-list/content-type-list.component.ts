@@ -27,7 +27,7 @@ export class ContentTypeListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.contentType.getAll().pipe(
+    this.contentType.store.all$.pipe(
       map((res: ContentType[]) => {
         const normalize = (ct => ({
           name: ct.alias,

@@ -29,7 +29,7 @@ export class DatabaseService {
     });
   }
 
-  public init(opts?: DatabaseOptions) {
+  public init(opts?: DatabaseOptions): Observable<any[]> {
     return of({}).pipe(
       switchMap(() => {
         const tablesWithData = new Array<Observable<number>[]>();
@@ -68,6 +68,16 @@ export class DatabaseService {
 
   public create<T>(storeName: string, entity: T): Observable<number> {
     return this.db.add(storeName, entity).pipe(
+      map(_ => 0),
+      catchError(err => {
+        console.warn('ClearCMS.DatabaseService', err);
+        return of(1);
+      })
+    );
+  }
+
+  public update<T>(storeName: string, entity: T): Observable<number> {
+    return this.db.update(storeName, entity).pipe(
       map(_ => 0),
       catchError(err => {
         console.warn('ClearCMS.DatabaseService', err);
